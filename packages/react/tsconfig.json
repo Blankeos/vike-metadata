@@ -15,10 +15,8 @@
     "noUncheckedIndexedAccess": true,
     "jsx": "preserve",
     "types": [],
-    "baseUrl": ".",
-    "paths": {
-      "internals": ["../internals/src"] // Adjust the relative path to your internals package
-    }
+    "baseUrl": "."
   },
+  "include": ["../internals/src"],
   "exclude": ["node_modules", "dist", "./dev"]
 }

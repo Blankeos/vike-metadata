@@ -8,4 +8,6 @@ export default defineConfig({
   splitting: true,
   sourcemap: true,
   clean: true,
+  external: ['vue', 'vike-vue'],
+  minify: true,
 });

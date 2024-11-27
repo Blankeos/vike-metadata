@@ -5,19 +5,19 @@ import {
   _RemoveArray,
   Twitter,
   UseMetadataParams as UseMetadataParamsBase,
-} from 'internals/src/types';
+} from '../../internals/src/types';
 
 import {
   parseFormatDetection,
   parseKeywords,
   parseRobotsInfo,
   parseViewport,
-} from 'internals/src/parse-utilities';
+} from '../../internals/src/parse-utilities';
 
 import {
   createIfNotExistsMetaName,
   createIfNotExistsMetaProperty,
-} from 'internals/src/vanilla-utilities';
+} from '../../internals/src/vanilla-utilities';
 
 // ===========================================================================
 // Hook
@@ -211,9 +211,24 @@ export function initUseMetadata(config: UseMetadataParams) {
 }
 
 let GLOBAL_DEFAULTS: UseMetadataParams = {};
-export function setGlobalDefaults(config: UseMetadataParams) {
+function setGlobalDefaults(config: UseMetadataParams) {
   GLOBAL_DEFAULTS = config;
 }
+
+export type UseMetadataFunctionType = ((params: UseMetadataParams) => void) & {
+  /**
+   * Recommended way to set default values.
+   *
+   * @example
+   * import { useMetadata } from 'vike-metadata-vue';
+   *
+   * useMetadata.setGlobalDefaults({
+   *   title: 'Home | Solid Launch',
+   *   description: 'An awesome app template by Carlo Taleon.',
+   * })
+   */
+  setGlobalDefaults: (config: UseMetadataParams) => void;
+};
 
 /**
  *
@@ -232,21 +247,10 @@ export function setGlobalDefaults(config: UseMetadataParams) {
  *    })
  * }
  */
-export function useMetadata(params: UseMetadataParams) {
+export const useMetadata: UseMetadataFunctionType = (params) => {
   return _useMetadata(params, GLOBAL_DEFAULTS);
-}
+};
 
-/**
- * Recommended way to set default values.
- *
- * @example
- * import { useMetadata } from 'vike-metadata-vue';
- *
- * useMetadata.setGlobalDefaults({
- *   title: 'Home | Solid Launch',
- *   description: 'An awesome app template by Carlo Taleon.',
- * })
- */
 useMetadata.setGlobalDefaults = setGlobalDefaults;
 
 // ===========================================================================

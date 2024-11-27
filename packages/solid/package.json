@@ -32,7 +32,6 @@
     "solid-js": "^1.6.0"
   },
   "devDependencies": {
-    "internals": "workspace:*",
     "@types/node": "^22.10.0",
     "tsup": "^8.3.5",
     "tsup-preset-solid": "^2.2.0",

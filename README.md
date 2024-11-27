@@ -16,7 +16,7 @@ A hook I made to manage metadata for your Vike + React/Solid/Vue app. Kinda like
 
 ## Features
 
-- [x] ☁️ Lightweight and simple.
+- [x] ☁️ Lightweight (minified & no extra dependencies).
 - [x] 😻 Typesafe, repeatable, and pleasant DX for managing meta tags.
 - [x] ❇️ Similar API to Next.js's [Metadata API](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadata-object).
 - [x] ⚒️ Made for Vike + React/Solid/Vue.
