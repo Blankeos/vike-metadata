@@ -1,6 +1,6 @@
 {
   "name": "vike-metadata-solid",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A hook to manage metadata for your Vike + Solid app.",
   "license": "MIT",
   "author": "Carlo Taleon",
