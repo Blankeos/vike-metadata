@@ -31,10 +31,8 @@
   "peerDependencies": {
     "vue": "^3.5.13"
   },
-  "dependencies": {
-    "internals": "workspace:*"
-  },
   "devDependencies": {
+    "internals": "workspace:*",
     "@types/node": "^22.10.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "tsup": "^8.3.5",
