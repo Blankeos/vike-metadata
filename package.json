@@ -5,16 +5,16 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "vite serve dev",
-    "build": "tsup",
-    "build:site": "vite build dev",
-    "preview:site": "vite preview dev",
-    "test": "concurrently bun:test:*",
+    "dev": "bun run --filter '*' dev",
+    "build": "bun run --filter '*' build",
+    "test": "bun run --filter '*' test",
+    "lint": "bun run --filter '*' lint",
     "test:client": "vitest",
     "test:ssr": "bun run test:client --mode ssr",
     "prepublishOnly": "bun run build",
+    "ci": "bun run lint && bun run build",
+    "release": "bun run lint && bun run build && changeset publish",
     "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"dev/**/*.{js,ts,json,css,tsx,jsx}\"",
-    "lint": "concurrently bun:lint:*",
     "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}",
     "lint:types": "tsc --noEmit",
     "update-deps": "bunx npm-check-updates --format group --interactive",
@@ -22,5 +22,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.10"
   }
 }

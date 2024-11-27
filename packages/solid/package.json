@@ -25,7 +25,8 @@
     "dev": "vite serve dev",
     "build": "tsup",
     "build:site": "vite build dev",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build",
+    "lint": "tsc"
   },
   "peerDependencies": {
     "solid-js": "^1.6.0"
