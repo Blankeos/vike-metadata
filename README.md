@@ -9,7 +9,9 @@
   <a href="https://www.npmjs.com/package/vike-metadata-react" target="_blank">
   <img src="https://img.shields.io/npm/dw/vike-metadata-react?style=for-the-badge" alt="NPM Downloads"></img></a>
   <!-- <img src="https://img.shields.io/npm/l/vike-metadata-react?style=for-the-badge" alt="NPM License"></img> -->
-  <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-react?style=for-the-badge" alt="NPM Bundle Size" ></img>
+  <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-react?style=for-the-badge&label=minzip%20size%20(react)" alt="NPM Bundle Size" ></img>
+  <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-solid?style=for-the-badge&label=minzip%20size%20(solid)" alt="NPM Bundle Size" ></img>
+  <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-vue?style=for-the-badge&label=minzip%20size%20(vue)" alt="NPM Bundle Size" ></img>
 </div>
 
 A hook I made to manage metadata for your Vike + React/Solid/Vue app. Kinda like Next-SEO or React Helmet but for Vike and in a simple hook.
@@ -71,6 +73,10 @@ export function Page() {
 
 ### FAQs
 
+- **It doesn't work on my Vike app.** Given that most Vike apps are built very granularly different from each other, you might have configured your app differently. `vike-metadata-*` expects the following practices if you choose to adopt this into your project:
+  - React|Vue|Solid: In `+config.ts`, do not use `Head` or `title`.
+  - React|Vue|Solid: Do not use `+Head.tsx` or `+title.ts` either.
+  - React: In `+config.ts`, `stream: true`.
 - **Is this a zero-cost abstraction?** Most abstractions aren't. This technically does parses the typescript data shape into actual metatags and a lot of IF statements to render them or not, so that might be the "very, very" small cost here? Obviously laying out your metatags by yourself would be computationally cheaper, but I haven't really tested the overhead. Although, I'd choose still this over laying it out myself just for the DX. In most cases, this is what Next.js's Metadata API does too.
 - **How to do Template Strings?** If you're looking for something like `%s | My Site`, just make a utility function like:
 
@@ -79,4 +85,20 @@ export function Page() {
   export function getTitle(title: string) {
     return TITLE_TEMPLATE.replace('%s', title);
   }
+  ```
+
+- **How to do dynamic meta tags (e.g. title)?** Just use `useData` or `usePageContext` along with `useMetadata`. For instance:
+
+  ```tsx
+  import { useMetadata } from 'vike-metadata-solid';
+  import { useData } from 'solid-start';
+
+  export function Page() {
+    const movie = useData<{ title: string }>();
+
+    useMetadata({
+      title: movie.title,
+    });
+
+    // ...
   ```
