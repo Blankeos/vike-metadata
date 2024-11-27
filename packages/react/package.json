@@ -1,0 +1,56 @@
+{
+  "name": "vike-metadata-react",
+  "version": "0.0.1",
+  "description": "A hook to manage metadata for your Vike + React app.",
+  "license": "MIT",
+  "author": "Carlo Taleon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blankeos/vike-metadata.git"
+  },
+  "homepage": "https://github.com/Blankeos/vike-metadata#readme",
+  "bugs": {
+    "url": "https://github.com/Blankeos/vike-metadata/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "private": false,
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite serve dev",
+    "build": "tsup",
+    "build:site": "vite build dev",
+    "prepublishOnly": "bun run build"
+  },
+  "dependencies": {
+    "internals": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.3",
+    "vike-react": "^0.5.8",
+    "vite": "5.4.11"
+  },
+  "keywords": [
+    "vike",
+    "seo",
+    "react",
+    "react-js",
+    "metadata",
+    "use-meta",
+    "use-metadata",
+    "meta-tags",
+    "helmet"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
