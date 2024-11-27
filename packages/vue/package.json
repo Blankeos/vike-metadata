@@ -1,0 +1,61 @@
+{
+  "name": "vike-metadata-vue",
+  "version": "0.0.1",
+  "description": "A hook to manage metadata for your Vike + Vue app.",
+  "license": "MIT",
+  "author": "Carlo Taleon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blankeos/vike-metadata.git"
+  },
+  "homepage": "https://github.com/Blankeos/vike-metadata#readme",
+  "bugs": {
+    "url": "https://github.com/Blankeos/vike-metadata/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "private": false,
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite serve dev",
+    "build": "tsup",
+    "build:site": "vite build dev",
+    "prepublishOnly": "bun run build"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13"
+  },
+  "dependencies": {
+    "internals": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vike": "^0.4.204",
+    "vike-vue": "^0.8.5",
+    "vite": "5.4.11"
+  },
+  "keywords": [
+    "vike",
+    "seo",
+    "vue",
+    "vue-js",
+    "metadata",
+    "use-meta",
+    "use-metadata",
+    "meta-tags",
+    "helmet"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "browser": {},
+  "typesVersions": {}
+}
