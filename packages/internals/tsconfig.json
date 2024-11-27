@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "jsx": "preserve",
+    "types": [],
+    "baseUrl": ".",
+    "declaration": true, // This is crucial for generating `.d.ts` files for types
+    "outDir": "./dist" // Make sure to output types to a specific folder (e.g., dist)
+  },
+  "exclude": ["node_modules", "dist", "./dev"]
+}

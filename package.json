@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "vite serve dev",
+    "build": "tsup",
+    "build:site": "vite build dev",
+    "preview:site": "vite preview dev",
+    "test": "concurrently bun:test:*",
+    "test:client": "vitest",
+    "test:ssr": "bun run test:client --mode ssr",
+    "prepublishOnly": "bun run build",
+    "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"dev/**/*.{js,ts,json,css,tsx,jsx}\"",
+    "lint": "concurrently bun:lint:*",
+    "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}",
+    "lint:types": "tsc --noEmit",
+    "update-deps": "bunx npm-check-updates --format group --interactive",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

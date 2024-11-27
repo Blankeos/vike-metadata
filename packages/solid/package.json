@@ -1,0 +1,77 @@
+{
+  "name": "vike-metadata-solid",
+  "version": "0.0.1",
+  "description": "A hook to manage metadata for your Vike + Solid app.",
+  "license": "MIT",
+  "author": "Carlo Taleon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blankeos/vike-metadata.git"
+  },
+  "homepage": "https://github.com/Blankeos/vike-metadata#readme",
+  "bugs": {
+    "url": "https://github.com/Blankeos/vike-metadata/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "private": false,
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite serve dev",
+    "build": "tsup",
+    "build:site": "vite build dev",
+    "prepublishOnly": "bun run build"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.6.0"
+  },
+  "dependencies": {
+    "internals": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsup": "^8.3.5",
+    "tsup-preset-solid": "^2.2.0",
+    "typescript": "^5.6.3",
+    "vike": "^0.4.204",
+    "vike-solid": "^0.7.6",
+    "vite": "5.4.11"
+  },
+  "keywords": [
+    "vike",
+    "seo",
+    "solid",
+    "solid-js",
+    "metadata",
+    "use-meta",
+    "use-metadata",
+    "meta-tags",
+    "helmet"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "browser": {},
+  "exports": {
+    "solid": {
+      "development": "./dist/dev.jsx",
+      "import": "./dist/index.jsx"
+    },
+    "development": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/dev.js"
+      }
+    },
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "typesVersions": {}
+}
