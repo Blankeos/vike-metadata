@@ -4,17 +4,45 @@
   <img src="_docs/image.png" alt="vike-metadata-banner" />
 </div>
 
-<div align="center">
-  <img src="https://img.shields.io/badge/maintained%20with-bun-cc00ff.svg?style=for-the-badge&logo=bun)](https://bun.sh/" alt="Bun"></img>
-  <a href="https://www.npmjs.com/package/vike-metadata-react" target="_blank">
-  <img src="https://img.shields.io/npm/dw/vike-metadata-react?style=for-the-badge" alt="NPM Downloads"></img></a>
-  <!-- <img src="https://img.shields.io/npm/l/vike-metadata-react?style=for-the-badge" alt="NPM License"></img> -->
-  <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-react?style=for-the-badge&label=minzip%20size%20(react)" alt="NPM Bundle Size" ></img>
-  <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-solid?style=for-the-badge&label=minzip%20size%20(solid)" alt="NPM Bundle Size" ></img>
-  <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-vue?style=for-the-badge&label=minzip%20size%20(vue)" alt="NPM Bundle Size" ></img>
+<div>
+  <table>
+    <tr>
+      <td align="center">
+      React
+      </td>
+      <td align="center">
+      Solid
+      </td>
+      <td align="center">
+      Vue
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="https://www.npmjs.com/package/vike-metadata-react" target="_blank">
+          <img src="https://img.shields.io/npm/dw/vike-metadata-react?style=for-the-badge&label=Downloads%20(react)" alt="NPM Downloads"></img></a>
+        <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-react?style=for-the-badge&label=minzip%20size%20(react)" alt="NPM Bundle Size" ></img>
+      </td>
+      <td align="center">
+        <a href="https://www.npmjs.com/package/vike-metadata-solid" target="_blank">
+          <img src="https://img.shields.io/npm/dw/vike-metadata-solid?style=for-the-badge&label=Downloads%20(solid)" alt="NPM Downloads"></img></a>
+        <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-solid?style=for-the-badge&label=minzip%20size%20(solid)" alt="NPM Bundle Size" ></img>
+      </td>
+      <td align="center">
+        <a href="https://www.npmjs.com/package/vike-metadata-vue" target="_blank">
+          <img src="https://img.shields.io/npm/dw/vike-metadata-vue?style=for-the-badge&label=Downloads%20(vue)" alt="NPM Downloads"></img></a>
+        <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-vue?style=for-the-badge&label=minzip%20size%20(vue)" alt="NPM Bundle Size" ></img>
+      </td>
+    </tr>
+  <table>
 </div>
 
-A hook I made to manage metadata for your Vike + React/Solid/Vue app. Kinda like Next-SEO or React Helmet but for Vike and in a simple hook.
+<div align="center">
+  <img src="https://img.shields.io/badge/maintained%20with-bun-cc00ff.svg?style=for-the-badge&logo=bun)](https://bun.sh/" alt="Bun"></img>
+    <img src="https://img.shields.io/npm/l/vike-metadata-react?style=for-the-badge" alt="NPM License"></img>
+</div>
+
+🪝 A hook to manage metadata for your Vike + React/Solid/Vue app. Kinda like Next-SEO or React Helmet but for Vike and in a simple hook.
 
 ## Features
 
