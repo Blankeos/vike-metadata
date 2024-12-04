@@ -9,7 +9,7 @@ const preset_options: preset.PresetOptions = {
       // entries with '.tsx' extension will have `solid` export condition generated
       entry: 'src/index.tsx',
       // will generate a separate development entry
-      dev_entry: true,
+      dev_entry: false,
     },
   ],
   // Set to `true` to remove all `console.*` calls and `debugger` statements in prod builds
@@ -17,9 +17,7 @@ const preset_options: preset.PresetOptions = {
   // Set to `true` to generate a CommonJS build alongside ESM
   // cjs: true,
   modify_esbuild_options: (esbuildOptions) => {
-    esbuildOptions.platform = 'node';
-    esbuildOptions.external?.push('vike-solid');
-    esbuildOptions.external?.push('vike');
+    esbuildOptions.external = ['vike', 'vike-solid'];
     esbuildOptions.minify = true; // from 21kb to 10.97kb
     // esbuildOptions.minify = 'terser', // from 21kb to 10.99kb
     return esbuildOptions;

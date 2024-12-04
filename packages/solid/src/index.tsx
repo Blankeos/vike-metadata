@@ -232,7 +232,7 @@ export type UseMetadataFunctionType = ((params: UseMetadataParams) => void) & {
    * Recommended way to set default values.
    *
    * @example
-   * import { useMetadata } from 'vike-metadata-vue';
+   * import { useMetadata } from 'vike-metadata-solid';
    *
    * useMetadata.setGlobalDefaults({
    *   title: 'Home | Solid Launch',
