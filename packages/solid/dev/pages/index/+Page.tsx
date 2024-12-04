@@ -13,7 +13,7 @@ export default function Page() {
     <>
       <div>
         <h1>HOME</h1>
-        <button onClick={() => createSignal(signal() + 1)}>Increment {signal()}</button>
+        <button onClick={() => setSignal(signal() + 1)}>Increment {signal()}</button>
       </div>
     </>
   );
