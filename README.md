@@ -58,7 +58,7 @@ export function RootLayout(props) {
 
 2. Use in your pages
 
-Adding defaults does not add the metadata to the page. This does. So if you don't use `useMetadata` on a page the tags will not be rendered at all. We don't use the cumulative approach like Next.js does.
+Adding defaults does not add the metadata to the page. But this part does. So if you don't use `useMetadata` on a page the tags will not be rendered at all. We don't use the cumulative approach like Next.js does.
 
 ```tsx
 export function Page() {
@@ -74,6 +74,7 @@ export function Page() {
 ### FAQs
 
 - **It doesn't work on my Vike app.** Given that most Vike apps are built very granularly different from each other, you might have configured your app differently. `vike-metadata-*` expects the following practices if you choose to adopt this into your project:
+  - React|Vue|Solid: Must be using `vike-react` or `vike-vue` or `vike-solid`, custom vike plugins are not supported (yet).
   - React|Vue|Solid: In `+config.ts`, do not use `Head` or `title`.
   - React|Vue|Solid: Do not use `+Head.tsx` or `+title.ts` either.
   - React: In `+config.ts`, `stream: true`.
