@@ -19,6 +19,7 @@ const preset_options: preset.PresetOptions = {
   modify_esbuild_options: (esbuildOptions) => {
     esbuildOptions.platform = 'node';
     esbuildOptions.external?.push('vike-solid');
+    esbuildOptions.external?.push('vike');
     esbuildOptions.minify = true; // from 21kb to 10.97kb
     // esbuildOptions.minify = 'terser', // from 21kb to 10.99kb
     return esbuildOptions;

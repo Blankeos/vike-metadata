@@ -8,6 +8,6 @@ export default defineConfig({
   splitting: true,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', 'vike-react'],
+  external: ['react', 'react-dom', 'vike-react', 'vike'],
   minify: true,
 });
