@@ -1,5 +1,11 @@
 # vike-metadata-solid
 
+## 1.0.4
+
+### Patch Changes
+
+- [`a706e36`](https://github.com/Blankeos/vike-metadata/commit/a706e361af3dd26a34db97c17fdbc5b7d92a2344) Thanks [@Blankeos](https://github.com/Blankeos)! - fix: solidjs external tsup.
+
 ## 1.0.3
 
 ### Patch Changes
