@@ -1,5 +1,11 @@
 # vike-metadata-vue
 
+## 1.0.2
+
+### Patch Changes
+
+- [`d5ec09f`](https://github.com/Blankeos/vike-metadata/commit/d5ec09f0a1e7ee0a41afe14ee470459a3df3e838) Thanks [@Blankeos](https://github.com/Blankeos)! - fix: Made vike as an external dependency.
+
 ## 1.0.1
 
 ### Patch Changes
