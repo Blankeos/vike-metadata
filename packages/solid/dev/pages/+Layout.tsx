@@ -21,6 +21,8 @@ export default function RootLayout(props: FlowProps) {
           <span>{' | '}</span>
           <a href="/about">About</a>
           <span>{' | '}</span>
+          <a href="/nossr">NoSSR</a>
+          <span>{' | '}</span>
         </nav>
         {props.children}
       </div>
