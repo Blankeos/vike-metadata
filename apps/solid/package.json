@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vike dev",
-    "build": "bunx --bun vike build"
+    "build": "bunx --bun vike build",
+    "preview-static": "vike preview"
   },
   "dependencies": {
     "solid-js": "1.9.11",

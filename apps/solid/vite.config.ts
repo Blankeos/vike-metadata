@@ -6,6 +6,14 @@ import vikeSolid from 'vike-solid/vite';
 
 export default defineConfig({
   plugins: [tsconfigPaths(), vike(), vikeSolid()],
+  resolve: {
+    conditions: ['browser', 'development', 'module', 'import'],
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      conditions: ['browser', 'development', 'module', 'import'],
+    },
+  },
   server: { port: 3000 },
   preview: { port: 3000 },
 });

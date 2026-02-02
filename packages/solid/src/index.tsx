@@ -1,4 +1,5 @@
-/** @jsxImportSource solid-js (Overrides jsx import source from TSConfig. Sometimes it doesn't get overriden by the tsconfig.json) */
+/** @jsxRuntime automatic */
+/** @jsxImportSource solid-js */
 import type { JSX } from 'solid-js';
 import { useConfig } from 'vike-solid/useConfig';
 

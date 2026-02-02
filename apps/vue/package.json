@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vike dev",
-    "build": "bunx --bun vike build"
+    "build": "bunx --bun vike build",
+    "preview-static": "vike preview"
   },
   "dependencies": {
     "vike": "0.4.253",
