@@ -4,6 +4,11 @@ import { useMetadata } from 'src';
 useMetadata.setGlobalDefaults({
   title: 'Vike + React',
   description: 'Demo showcasing Vike + React',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   viewport: {
     width: 'device-width',
     initialScale: 1,

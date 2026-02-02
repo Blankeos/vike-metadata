@@ -79,6 +79,9 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
     // Robots
     robots: params.robots ?? DEFAULT_CONFIG.robots,
 
+    // Icons
+    icons: params.icons ?? DEFAULT_CONFIG.icons,
+
     // Manifest
     manifest: params.manifest ?? DEFAULT_CONFIG.manifest,
 
@@ -155,6 +158,8 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
             ? parseRobotsInfo((values?.robots as any)?.googleBot)
             : null,
         )}
+
+        {renderIconsMetadata(values.icons)}
 
         {values?.manifest ? <link rel="manifest" href={values.manifest?.toString()} /> : null}
 
@@ -563,6 +568,56 @@ function renderOpenGraphMetadata(value: UseMetadataParams['openGraph']) {
       {_renderOGMusicRadioStation(value as any)}
       {_renderOGVideoMovie(value as any)}
       {_renderOGVideoEpisode(value as any)}
+    </>
+  );
+}
+
+function renderIconsMetadata(value: UseMetadataParams['icons']) {
+  if (!value) return null;
+
+  type IconLink = {
+    url: string | URL;
+    sizes?: string;
+    type?: string;
+    media?: string;
+  };
+
+  type IconOtherLink = IconLink & { rel: string };
+
+  function renderIconLink(rel: string, item: string | URL | IconLink) {
+    if (typeof item === 'string' || item instanceof URL) {
+      return <link rel={rel} href={item.toString()} />;
+    }
+
+    return (
+      <link
+        rel={rel}
+        href={item.url?.toString()}
+        sizes={item.sizes}
+        type={item.type}
+        media={item.media}
+      />
+    );
+  }
+
+  function renderOtherIconLink(item: IconOtherLink) {
+    return (
+      <link
+        rel={item.rel}
+        href={item.url?.toString()}
+        sizes={item.sizes}
+        type={item.type}
+        media={item.media}
+      />
+    );
+  }
+
+  return (
+    <>
+      {renderArrayable(value.icon, (item) => renderIconLink('icon', item))}
+      {renderArrayable(value.shortcut, (item) => renderIconLink('shortcut icon', item))}
+      {renderArrayable(value.apple, (item) => renderIconLink('apple-touch-icon', item))}
+      {renderArrayable(value.other, (item) => renderOtherIconLink(item))}
     </>
   );
 }
