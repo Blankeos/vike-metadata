@@ -6,6 +6,8 @@
       <a href="/about">About</a>
       <span>{{ ' | ' }}</span>
       <a href="/nossr">No SSR</a>
+      <span>{{ ' | ' }}</span>
+      <a href="/catchall/one">Catchall</a>
     </nav>
     <slot />
   </div>

@@ -19,6 +19,8 @@ export default function RootLayout(props: PropsWithChildren) {
         <a href="/about">About</a>
         <span>{' | '}</span>
         <a href="/nossr">No SSR</a>
+        <span>{' | '}</span>
+        <a href="/catchall/one">Catchall</a>
       </nav>
       {props?.children}
     </div>
