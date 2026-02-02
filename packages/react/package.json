@@ -22,9 +22,9 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vite serve dev",
+    "dev": "bun --cwd ../../apps/react dev",
     "build": "tsup",
-    "build:site": "vite build dev",
+    "build:site": "bun --cwd ../../apps/react build",
     "prepublishOnly": "bun run build",
     "lint": "tsc"
   },

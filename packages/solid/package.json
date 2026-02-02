@@ -22,9 +22,9 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vite serve dev",
+    "dev": "bun --cwd ../../apps/solid dev",
     "build": "tsup",
-    "build:site": "vite build dev",
+    "build:site": "bun --cwd ../../apps/solid build",
     "prepublishOnly": "bun run build",
     "lint": "tsc"
   },
@@ -36,7 +36,7 @@
     "tsup": "^8.3.5",
     "tsup-preset-solid": "^2.2.0",
     "typescript": "^5.6.3",
-    "vike": "^0.4.204",
+    "vike": "0.4.253",
     "vike-solid": "^0.7.6",
     "vite": "5.4.11"
   },

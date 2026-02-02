@@ -1,0 +1,19 @@
+{
+  "name": "vike-metadata-vue-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vike dev",
+    "build": "bunx --bun vike build"
+  },
+  "dependencies": {
+    "vike": "0.4.253",
+    "vike-vue": "^0.8.5",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  }
+}

@@ -22,9 +22,9 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vite serve dev",
+    "dev": "bun --cwd ../../apps/vue dev",
     "build": "tsup",
-    "build:site": "vite build dev",
+    "build:site": "bun --cwd ../../apps/vue build",
     "prepublishOnly": "bun run build",
     "lint": "tsc"
   },
@@ -36,7 +36,7 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
-    "vike": "^0.4.204",
+    "vike": "0.4.253",
     "vike-vue": "^0.8.5",
     "vite": "5.4.11"
   },

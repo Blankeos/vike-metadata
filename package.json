@@ -2,10 +2,11 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
-    "dev": "bun run --filter '*' dev",
+    "dev": "bun run --filter 'apps/*' dev",
     "build": "bun run --filter '*' build",
     "test": "bun run --filter '*' test",
     "lint": "bun run --filter '*' lint",
@@ -18,7 +19,8 @@
     "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}",
     "lint:types": "tsc --noEmit",
     "update-deps": "bunx npm-check-updates --format group --interactive",
-    "version": "auto-changelog -p && git add CHANGELOG.md"
+    "version": "auto-changelog -p && git add CHANGELOG.md",
+    "cleanmod": "rm -rf node_modules && find apps packages -type d -name node_modules -prune -exec rm -rf {} +"
   },
   "engines": {
     "node": ">=18"

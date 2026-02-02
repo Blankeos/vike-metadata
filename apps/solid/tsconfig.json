@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": ["vite/client", "vike-solid/client"],
+    "baseUrl": ".",
+    "paths": {
+      "src": ["../../packages/solid/src"],
+      "src/*": ["../../packages/solid/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
