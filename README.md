@@ -80,6 +80,7 @@ useMetadata.setGlobalDefaults({
 });
 
 export function RootLayout(props) {
+  useMetadata({}); // Use at least once in layout, so all pages use it as default fallback.
   // ...
 }
 ```
