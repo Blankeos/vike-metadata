@@ -18,11 +18,13 @@ export default function Page() {
     setPreviousSlug(normalizedSlug());
   });
 
-  useMetadata({
-    title: `Catchall ${normalizedSlug()}`,
-    description: 'Catchall example page',
-    keywords: ['Catchall', 'Page'],
-  });
+  createEffect(() => {
+    useMetadata({
+      title: `Catchall ${normalizedSlug()}`,
+      description: 'Catchall example page',
+      keywords: ['Catchall', 'Page'],
+    });
+  })
 
   return (
     <div>

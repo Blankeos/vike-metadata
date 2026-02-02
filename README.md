@@ -131,3 +131,5 @@ export function Page() {
 
     // ...
   ```
+
+- **Gotcha: `ssr: false` + `@catchall` routes (Solid only).** In SolidJS apps, if you disable SSR and use a `@catchall` route, metadata won't render reliably. Workaround: wrap `useMetadata(...)` in a `createEffect` along with the signal of the path segment i.e. (`_@` with `useParams`) so it re-runs on the client. Otherwise keep SSR enabled for those routes or avoid `@catchall` with `ssr: false`.

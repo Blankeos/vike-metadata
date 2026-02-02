@@ -1,7 +1,8 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource solid-js */
-import type { JSX } from 'solid-js';
+import { createEffect, createMemo, type JSX } from 'solid-js';
 import { useConfig } from 'vike-solid/useConfig';
+import { usePageContext } from 'vike-solid/usePageContext';
 
 import {
   _RemoveArray,
@@ -184,6 +185,10 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
   }
   // > Client-side
   else {
+    if (values.title) {
+      document.title = values.title;
+    }
+
     if (values.openGraph.title) {
       createIfNotExistsMetaProperty('og:title', values.openGraph.title);
     }
