@@ -21,17 +21,17 @@
       <td align="center">
         <a href="https://www.npmjs.com/package/vike-metadata-react" target="_blank">
           <img src="https://img.shields.io/npm/dw/vike-metadata-react?style=for-the-badge&label=Downloads%20" alt="NPM Downloads"></img></a>
-        <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-react?style=for-the-badge&label=minzip%20size%20(react)" alt="NPM Bundle Size" ></img>
+        <img src="https://deno.bundlejs.com/badge?q=vike-metadata-react&treeshake=" alt="NPM Bundle Size" ></img>
       </td>
       <td align="center">
         <a href="https://www.npmjs.com/package/vike-metadata-solid" target="_blank">
           <img src="https://img.shields.io/npm/dw/vike-metadata-solid?style=for-the-badge&label=Downloads%20" alt="NPM Downloads"></img></a>
-        <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-solid?style=for-the-badge&label=minzip%20size%20(solid)" alt="NPM Bundle Size" ></img>
+        <img src="https://deno.bundlejs.com/badge?q=vike-metadata-solid&treeshake=" alt="NPM Bundle Size" ></img>
       </td>
       <td align="center">
         <a href="https://www.npmjs.com/package/vike-metadata-vue" target="_blank">
           <img src="https://img.shields.io/npm/dw/vike-metadata-vue?style=for-the-badge&label=Downloads%20" alt="NPM Downloads"></img></a>
-        <img src="https://img.shields.io/bundlephobia/minzip/vike-metadata-vue?style=for-the-badge&label=minzip%20size%20(vue)" alt="NPM Bundle Size" ></img>
+        <img src="https://deno.bundlejs.com/badge?q=vike-metadata-vue&treeshake=" alt="NPM Bundle Size" ></img>
       </td>
     </tr>
   <table>
