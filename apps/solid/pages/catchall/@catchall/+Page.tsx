@@ -1,4 +1,4 @@
-import { createEffect, createSignal } from 'solid-js';
+import { createMemo, on } from 'solid-js';
 import { usePageContext } from 'vike-solid/usePageContext';
 import { useMetadata } from 'src';
 
@@ -19,11 +19,9 @@ export default function Page() {
     apple: '/icon-alt.svg',
   };
 
-  const [previousSlug, setPreviousSlug] = createSignal(normalizedSlug());
-
-  createEffect(() => {
-    setPreviousSlug(normalizedSlug());
-  });
+  const previousSlug = createMemo(
+    on(normalizedSlug, (value, prev) => prev ?? value),
+  );
 
   useMetadata(() => ({
     title: `Catchall ${normalizedSlug()}`,
