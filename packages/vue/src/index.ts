@@ -17,6 +17,7 @@ import {
 import {
   createIfNotExistsMetaName,
   createIfNotExistsMetaProperty,
+  updateIconsMetadata,
 } from '../../internals/src/vanilla-utilities';
 
 // ===========================================================================
@@ -200,6 +201,10 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
 
     if (values.keywords?.length) {
       createIfNotExistsMetaName('keywords', parseKeywords(values.keywords));
+    }
+
+    if (values.icons) {
+      updateIconsMetadata(values.icons);
     }
   }
 }
@@ -525,7 +530,7 @@ function renderIconsMetadata(value: UseMetadataParams['icons']) {
 
   function renderIconLink(rel: string, item: string | URL | IconLink) {
     if (typeof item === 'string' || item instanceof URL) {
-      return h('link', { rel, href: item.toString() });
+      return h('link', { rel, href: item.toString(), 'data-vike-metadata-icons': '' });
     }
 
     return h('link', {
@@ -534,6 +539,7 @@ function renderIconsMetadata(value: UseMetadataParams['icons']) {
       sizes: item.sizes,
       type: item.type,
       media: item.media,
+      'data-vike-metadata-icons': '',
     });
   }
 
@@ -544,6 +550,7 @@ function renderIconsMetadata(value: UseMetadataParams['icons']) {
       sizes: item.sizes,
       type: item.type,
       media: item.media,
+      'data-vike-metadata-icons': '',
     });
   }
 
