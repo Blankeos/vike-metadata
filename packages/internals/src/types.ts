@@ -113,22 +113,8 @@ export type UseMetadataParams = {
         googleBot?: string | RobotsInfo;
       });
 
-  // >>> Icons - has complicated internals, so we'll see if I implement this. I think you can use `manifest.json` anyway.
-  // icons?: {
-  //   /** <link rel="shortcut icon" href="/shortcut-icon.png" /> */
-  //   icon?: string;
-  //   /** <link rel="icon" href="/icon.png" /> */
-  //   shortcut?: string;
-  //   /** <link rel="apple-touch-icon" href="/apple-icon.png" /> */
-  //   apple?: string;
-  //   /**
-  //    * <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" />
-  //    */
-  //   other?: {
-  //     rel?: string;
-  //     url?: string;
-  //   };
-  // };
+  // >>> Icons
+  icons?: Icons;
 
   // >>> Manifest
   /**
@@ -178,6 +164,30 @@ export type UseMetadataParams = {
 // ===========================================================================
 
 export type _RemoveArray<T> = T extends any[] | undefined ? never : T;
+
+export type IconDescriptor = {
+  url: string | URL;
+  sizes?: string;
+  type?: string;
+  media?: string;
+};
+
+export type IconDescriptorWithRel = IconDescriptor & {
+  rel: string;
+};
+
+export type Icon = string | URL | IconDescriptor;
+
+export type Icons = {
+  /** <link rel="icon" href="/icon.png" /> */
+  icon?: Icon | Icon[];
+  /** <link rel="shortcut icon" href="/shortcut-icon.png" /> */
+  shortcut?: Icon | Icon[];
+  /** <link rel="apple-touch-icon" href="/apple-icon.png" /> */
+  apple?: Icon | Icon[];
+  /** <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" /> */
+  other?: IconDescriptorWithRel | IconDescriptorWithRel[];
+};
 
 export type TwitterImageDescriptor = {
   alt?: string;

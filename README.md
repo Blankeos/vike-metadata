@@ -80,6 +80,7 @@ useMetadata.setGlobalDefaults({
 });
 
 export function RootLayout(props) {
+  useMetadata({}); // Use at least once in layout, so all pages use it as default fallback.
   // ...
 }
 ```
@@ -130,4 +131,13 @@ export function Page() {
     });
 
     // ...
+  ```
+
+- **Gotcha: `@catchall` routes (Solid only).** In SolidJS apps, in catchall routes (`/*`) secifically, use `useMetadata(() => ({ ... }))` since the metadata depends on a signal (like the catchall slug), so the values stay reactive on the client and SSR can read the initial value. If not, the params you passed won't be reactive. You'd might be familiar with this behavior even with `@tanstack/solid-query`.
+
+  ```tsx
+  useMetadata(() => ({
+    title: `Catchall ${slug()}`,
+    description: 'Catchall example page',
+  }));
   ```

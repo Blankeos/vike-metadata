@@ -17,6 +17,7 @@ import {
 import {
   createIfNotExistsMetaName,
   createIfNotExistsMetaProperty,
+  updateIconsMetadata,
 } from '../../internals/src/vanilla-utilities';
 
 // ===========================================================================
@@ -73,6 +74,9 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
 
     // Robots
     robots: params.robots ?? DEFAULT_CONFIG.robots,
+
+    // Icons
+    icons: params.icons ?? DEFAULT_CONFIG.icons,
 
     // Manifest
     manifest: params.manifest ?? DEFAULT_CONFIG.manifest,
@@ -144,6 +148,8 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
         : null,
     ),
 
+    renderIconsMetadata(values.icons),
+
     values?.manifest ? h('link', { rel: 'manifest', href: values.manifest?.toString() }) : null,
 
     renderTwitterMetadata(values.twitter),
@@ -171,6 +177,9 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
   }
   // > Client-side
   else {
+    if (values.title) {
+      document.title = values.title;
+    }
     if (values.openGraph.title) {
       createIfNotExistsMetaProperty('og:title', values.openGraph.title);
     }
@@ -192,6 +201,10 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
 
     if (values.keywords?.length) {
       createIfNotExistsMetaName('keywords', parseKeywords(values.keywords));
+    }
+
+    if (values.icons) {
+      updateIconsMetadata(values.icons);
     }
   }
 }
@@ -500,6 +513,52 @@ function renderOpenGraphMetadata(value: UseMetadataParams['openGraph']) {
     _renderOGMusicRadioStation(value as any),
     _renderOGVideoMovie(value as any),
     _renderOGVideoEpisode(value as any),
+  ];
+}
+
+function renderIconsMetadata(value: UseMetadataParams['icons']) {
+  if (!value) return null;
+
+  type IconLink = {
+    url: string | URL;
+    sizes?: string;
+    type?: string;
+    media?: string;
+  };
+
+  type IconOtherLink = IconLink & { rel: string };
+
+  function renderIconLink(rel: string, item: string | URL | IconLink) {
+    if (typeof item === 'string' || item instanceof URL) {
+      return h('link', { rel, href: item.toString(), 'data-vike-metadata-icons': '' });
+    }
+
+    return h('link', {
+      rel,
+      href: item.url?.toString(),
+      sizes: item.sizes,
+      type: item.type,
+      media: item.media,
+      'data-vike-metadata-icons': '',
+    });
+  }
+
+  function renderOtherIconLink(item: IconOtherLink) {
+    return h('link', {
+      rel: item.rel,
+      href: item.url?.toString(),
+      sizes: item.sizes,
+      type: item.type,
+      media: item.media,
+      'data-vike-metadata-icons': '',
+    });
+  }
+
+  return [
+    renderArrayable(value.icon, (item) => renderIconLink('icon', item)),
+    renderArrayable(value.shortcut, (item) => renderIconLink('shortcut icon', item)),
+    renderArrayable(value.apple, (item) => renderIconLink('apple-touch-icon', item)),
+    renderArrayable(value.other, (item) => renderOtherIconLink(item)),
   ];
 }
 

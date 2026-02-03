@@ -1,7 +1,8 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource solid-js */
-import type { JSX } from 'solid-js';
+import { createEffect, type JSX } from 'solid-js';
 import { useConfig } from 'vike-solid/useConfig';
+import { usePageContext } from 'vike-solid/usePageContext';
 
 import {
   _RemoveArray,
@@ -19,6 +20,7 @@ import {
 import {
   createIfNotExistsMetaName,
   createIfNotExistsMetaProperty,
+  updateIconsMetadata,
 } from '../../internals/src/vanilla-utilities';
 
 // ===========================================================================
@@ -40,6 +42,8 @@ export interface UseMetadataParams extends UseMetadataParamsBase {
    */
   otherJSX?: () => JSX.Element;
 }
+
+type UseMetadataInput = UseMetadataParams | (() => UseMetadataParams);
 
 function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataParams) {
   const setConfig = useConfig();
@@ -77,6 +81,9 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
 
     // Robots
     robots: params.robots ?? DEFAULT_CONFIG.robots,
+
+    // Icons
+    icons: params.icons ?? DEFAULT_CONFIG.icons,
 
     // Manifest
     manifest: params.manifest ?? DEFAULT_CONFIG.manifest,
@@ -155,6 +162,8 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
             : null,
         )}
 
+        {renderIconsMetadata(values.icons)}
+
         {values?.manifest ? <link rel="manifest" href={values.manifest?.toString()} /> : null}
 
         {renderTwitterMetadata(values.twitter)}
@@ -184,6 +193,10 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
   }
   // > Client-side
   else {
+    if (values.title) {
+      document.title = values.title;
+    }
+
     if (values.openGraph.title) {
       createIfNotExistsMetaProperty('og:title', values.openGraph.title);
     }
@@ -206,7 +219,28 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
     if (values.keywords?.length) {
       createIfNotExistsMetaName('keywords', parseKeywords(values.keywords));
     }
+
+    if (values.icons) {
+      updateIconsMetadata(values.icons);
+    }
   }
+}
+
+function applyMetadata(params: UseMetadataInput, DEFAULT_CONFIG: UseMetadataParams) {
+  if (typeof params === 'function') {
+    const getParams = params;
+    _useMetadata(getParams(), DEFAULT_CONFIG);
+
+    if (typeof window !== 'undefined') {
+      createEffect(() => {
+        _useMetadata(getParams(), DEFAULT_CONFIG);
+      });
+    }
+
+    return;
+  }
+
+  _useMetadata(params, DEFAULT_CONFIG);
 }
 
 /**
@@ -220,7 +254,7 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
  * })
  */
 export function initUseMetadata(config: UseMetadataParams) {
-  return (params: UseMetadataParams) => _useMetadata(params, config);
+  return (params: UseMetadataInput) => applyMetadata(params, config);
 }
 
 let GLOBAL_DEFAULTS: UseMetadataParams = {};
@@ -228,7 +262,7 @@ function setGlobalDefaults(config: UseMetadataParams) {
   GLOBAL_DEFAULTS = config;
 }
 
-export type UseMetadataFunctionType = ((params: UseMetadataParams) => void) & {
+export type UseMetadataFunctionType = ((params: UseMetadataInput) => void) & {
   /**
    * Recommended way to set default values.
    *
@@ -244,6 +278,13 @@ export type UseMetadataFunctionType = ((params: UseMetadataParams) => void) & {
 };
 
 /**
+ * IMPORTANT (Solid only): On catchall routes (/*), when metadata depends on a signal,
+ * use the getter form so changes are tracked and SSR gets the right values.
+ *
+ * @example
+ * useMetadata(() => ({
+ *   title: `Catchall ${slug()}`,
+ * }))
  *
  * @example
  * import { useMetadata } from 'vike-metadata-solid';
@@ -260,8 +301,8 @@ export type UseMetadataFunctionType = ((params: UseMetadataParams) => void) & {
  *    })
  * }
  */
-export const useMetadata: UseMetadataFunctionType = (params: UseMetadataParams) => {
-  return _useMetadata(params, GLOBAL_DEFAULTS);
+export const useMetadata: UseMetadataFunctionType = (params: UseMetadataInput) => {
+  return applyMetadata(params, GLOBAL_DEFAULTS);
 };
 
 /**
@@ -558,6 +599,58 @@ function renderOpenGraphMetadata(value: UseMetadataParams['openGraph']) {
       {_renderOGMusicRadioStation(value as any)}
       {_renderOGVideoMovie(value as any)}
       {_renderOGVideoEpisode(value as any)}
+    </>
+  );
+}
+
+function renderIconsMetadata(value: UseMetadataParams['icons']) {
+  if (!value) return null;
+
+  type IconLink = {
+    url: string | URL;
+    sizes?: string;
+    type?: string;
+    media?: string;
+  };
+
+  type IconOtherLink = IconLink & { rel: string };
+
+  function renderIconLink(rel: string, item: string | URL | IconLink) {
+    if (typeof item === 'string' || item instanceof URL) {
+      return <link data-vike-metadata-icons="" rel={rel} href={item.toString()} />;
+    }
+
+    return (
+      <link
+        data-vike-metadata-icons=""
+        rel={rel}
+        href={item.url?.toString()}
+        sizes={item.sizes}
+        type={item.type}
+        media={item.media}
+      />
+    );
+  }
+
+  function renderOtherIconLink(item: IconOtherLink) {
+    return (
+      <link
+        data-vike-metadata-icons=""
+        rel={item.rel}
+        href={item.url?.toString()}
+        sizes={item.sizes}
+        type={item.type}
+        media={item.media}
+      />
+    );
+  }
+
+  return (
+    <>
+      {renderArrayable(value.icon, (item) => renderIconLink('icon', item))}
+      {renderArrayable(value.shortcut, (item) => renderIconLink('shortcut icon', item))}
+      {renderArrayable(value.apple, (item) => renderIconLink('apple-touch-icon', item))}
+      {renderArrayable(value.other, (item) => renderOtherIconLink(item))}
     </>
   );
 }

@@ -14,7 +14,7 @@
     "test:ssr": "bun run test:client --mode ssr",
     "prepublishOnly": "bun run build",
     "ci": "bun run lint && bun run build",
-    "publish": "bun run lint && bun run build && changeset publish",
+    "publish-ci": "bun run lint && bun run build && changeset publish",
     "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"dev/**/*.{js,ts,json,css,tsx,jsx}\"",
     "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}",
     "lint:types": "tsc --noEmit",
