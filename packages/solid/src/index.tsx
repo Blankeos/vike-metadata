@@ -1,6 +1,6 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource solid-js */
-import { createEffect, createMemo, type JSX } from 'solid-js';
+import { createEffect, type JSX } from 'solid-js';
 import { useConfig } from 'vike-solid/useConfig';
 import { usePageContext } from 'vike-solid/usePageContext';
 
@@ -42,6 +42,8 @@ export interface UseMetadataParams extends UseMetadataParamsBase {
    */
   otherJSX?: () => JSX.Element;
 }
+
+type UseMetadataInput = UseMetadataParams | (() => UseMetadataParams);
 
 function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataParams) {
   const setConfig = useConfig();
@@ -224,6 +226,23 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
   }
 }
 
+function applyMetadata(params: UseMetadataInput, DEFAULT_CONFIG: UseMetadataParams) {
+  if (typeof params === 'function') {
+    const getParams = params;
+    _useMetadata(getParams(), DEFAULT_CONFIG);
+
+    if (typeof window !== 'undefined') {
+      createEffect(() => {
+        _useMetadata(getParams(), DEFAULT_CONFIG);
+      });
+    }
+
+    return;
+  }
+
+  _useMetadata(params, DEFAULT_CONFIG);
+}
+
 /**
  * Alternative way to set default values via a factory pattern.
  *
@@ -235,7 +254,7 @@ function _useMetadata(params: UseMetadataParams, DEFAULT_CONFIG: UseMetadataPara
  * })
  */
 export function initUseMetadata(config: UseMetadataParams) {
-  return (params: UseMetadataParams) => _useMetadata(params, config);
+  return (params: UseMetadataInput) => applyMetadata(params, config);
 }
 
 let GLOBAL_DEFAULTS: UseMetadataParams = {};
@@ -243,7 +262,7 @@ function setGlobalDefaults(config: UseMetadataParams) {
   GLOBAL_DEFAULTS = config;
 }
 
-export type UseMetadataFunctionType = ((params: UseMetadataParams) => void) & {
+export type UseMetadataFunctionType = ((params: UseMetadataInput) => void) & {
   /**
    * Recommended way to set default values.
    *
@@ -259,6 +278,13 @@ export type UseMetadataFunctionType = ((params: UseMetadataParams) => void) & {
 };
 
 /**
+ * IMPORTANT (Solid only): On catchall routes (/*), when metadata depends on a signal,
+ * use the getter form so changes are tracked and SSR gets the right values.
+ *
+ * @example
+ * useMetadata(() => ({
+ *   title: `Catchall ${slug()}`,
+ * }))
  *
  * @example
  * import { useMetadata } from 'vike-metadata-solid';
@@ -275,8 +301,8 @@ export type UseMetadataFunctionType = ((params: UseMetadataParams) => void) & {
  *    })
  * }
  */
-export const useMetadata: UseMetadataFunctionType = (params: UseMetadataParams) => {
-  return _useMetadata(params, GLOBAL_DEFAULTS);
+export const useMetadata: UseMetadataFunctionType = (params: UseMetadataInput) => {
+  return applyMetadata(params, GLOBAL_DEFAULTS);
 };
 
 /**

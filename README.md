@@ -133,4 +133,11 @@ export function Page() {
     // ...
   ```
 
-- **Gotcha: `ssr: false` + `@catchall` routes (Solid only).** In SolidJS apps, if you disable SSR and use a `@catchall` route, metadata won't render reliably. Workaround: wrap `useMetadata(...)` in a `createEffect` along with the signal of the path segment i.e. (`_@` with `useParams`) so it re-runs on the client. Otherwise keep SSR enabled for those routes or avoid `@catchall` with `ssr: false`.
+- **Gotcha: `ssr: false` + `@catchall` routes (Solid only).** In SolidJS apps, if you disable SSR and use a `@catchall` route, metadata won't render reliably unless you use the getter form. Use `useMetadata(() => ({ ... }))` when metadata depends on a signal (like the catchall slug), so the values stay reactive on the client and SSR can read the initial value.
+
+  ```tsx
+  useMetadata(() => ({
+    title: `Catchall ${slug()}`,
+    description: 'Catchall example page',
+  }));
+  ```
