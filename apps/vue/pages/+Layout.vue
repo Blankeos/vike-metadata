@@ -29,4 +29,6 @@ useMetadata.setGlobalDefaults({
     initialScale: 1,
   },
 });
+
+export default {};
 </script>

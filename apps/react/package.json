@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "bunx --bun vike dev",
     "build": "bunx --bun vike build",
-    "preview-static": "vike preview"
+    "preview-static": "vike preview",
+    "ci": "echo skipped"
   },
   "dependencies": {
     "react": "^18.3.1",
