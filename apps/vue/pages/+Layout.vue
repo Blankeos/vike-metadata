@@ -7,7 +7,7 @@
       <span>{{ ' | ' }}</span>
       <a href="/nossr">No SSR</a>
       <span>{{ ' | ' }}</span>
-      <a href="/catchall/one">Catchall</a>
+      <a href="/catchall/1">Catchall</a>
     </nav>
     <slot />
   </div>

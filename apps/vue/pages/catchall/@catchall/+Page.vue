@@ -8,15 +8,15 @@
       <div>Slug changed: {{ slugChanged ? 'yes' : 'no' }}</div>
     </div>
     <div>
-      <a href="/catchall/one">/catchall/one</a>
+      <a href="/catchall/1">/catchall/1</a>
       <span>{{ ' | ' }}</span>
-      <a href="/catchall/two">/catchall/two</a>
+      <a href="/catchall/2">/catchall/2</a>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 import { usePageContext } from 'vike-vue/usePageContext';
 import { useMetadata } from 'src';
 
@@ -30,6 +30,12 @@ const slug = computed(() =>
 );
 const normalizedSlug = computed(() => slug.value || '(root)');
 
+const alternateIcons = {
+  icon: '/icon-alt.svg',
+  shortcut: '/icon-alt.svg',
+  apple: '/icon-alt.svg',
+};
+
 const previousSlug = ref(normalizedSlug.value);
 watch(normalizedSlug, (value) => {
   previousSlug.value = value;
@@ -37,9 +43,12 @@ watch(normalizedSlug, (value) => {
 
 const slugChanged = computed(() => previousSlug.value !== normalizedSlug.value);
 
-useMetadata({
-  title: 'Catchall',
-  description: 'Catchall example page',
-  keywords: ['Catchall', 'Page'],
+watchEffect(() => {
+  useMetadata({
+    title: `Catchall ${normalizedSlug.value}`,
+    description: 'Catchall example page',
+    keywords: ['Catchall', 'Page'],
+    icons: normalizedSlug.value === '2' ? alternateIcons : undefined,
+  });
 });
 </script>

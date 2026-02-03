@@ -133,7 +133,7 @@ export function Page() {
     // ...
   ```
 
-- **Gotcha: `ssr: false` + `@catchall` routes (Solid only).** In SolidJS apps, if you disable SSR and use a `@catchall` route, metadata won't render reliably unless you use the getter form. Use `useMetadata(() => ({ ... }))` when metadata depends on a signal (like the catchall slug), so the values stay reactive on the client and SSR can read the initial value.
+- **Gotcha: `@catchall` routes (Solid only).** In SolidJS apps, in catchall routes (`/*`) secifically, use `useMetadata(() => ({ ... }))` since the metadata depends on a signal (like the catchall slug), so the values stay reactive on the client and SSR can read the initial value. If not, the params you passed won't be reactive. You'd might be familiar with this behavior even with `@tanstack/solid-query`.
 
   ```tsx
   useMetadata(() => ({

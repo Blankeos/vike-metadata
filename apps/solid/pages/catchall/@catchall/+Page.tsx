@@ -11,6 +11,13 @@ export default function Page() {
       ? urlPathname().slice(prefix.length)
       : urlPathname().replace(/^\//, '');
   const normalizedSlug = () => slug() || '(root)';
+  const isSecondRoute = () => slug() === '2';
+
+  const alternateIcons = {
+    icon: '/icon-alt.svg',
+    shortcut: '/icon-alt.svg',
+    apple: '/icon-alt.svg',
+  };
 
   const [previousSlug, setPreviousSlug] = createSignal(normalizedSlug());
 
@@ -22,6 +29,7 @@ export default function Page() {
     title: `Catchall ${normalizedSlug()}`,
     description: 'Catchall example page',
     keywords: ['Catchall', 'Page'],
+    icons: isSecondRoute() ? alternateIcons : undefined,
   }));
 
   return (
@@ -34,9 +42,9 @@ export default function Page() {
         <div>Slug changed: {previousSlug() !== normalizedSlug() ? 'yes' : 'no'}</div>
       </div>
       <div>
-        <a href="/catchall/one">/catchall/one</a>
+        <a href="/catchall/1">/catchall/1</a>
         <span>{' | '}</span>
-        <a href="/catchall/two">/catchall/two</a>
+        <a href="/catchall/2">/catchall/2</a>
       </div>
     </div>
   );
