@@ -1,6 +1,6 @@
 {
   "name": "vike-metadata-vue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A hook to manage metadata for your Vike + Vue app.",
   "license": "MIT",
   "author": "Carlo Taleon",

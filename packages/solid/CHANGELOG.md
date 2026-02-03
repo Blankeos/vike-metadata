@@ -1,5 +1,15 @@
 # vike-metadata-solid
 
+## 1.0.5
+
+### Patch Changes
+
+- [#11](https://github.com/Blankeos/vike-metadata/pull/11) [`d170890`](https://github.com/Blankeos/vike-metadata/commit/d17089024cb766432c6a29b15c7890f5ccdaa35b) Thanks [@Blankeos](https://github.com/Blankeos)! - feat: added icons metadata (based on https://nextjs.org/docs/app/api-reference/functions/generate-metadata#icons) fixes #6
+
+- [#11](https://github.com/Blankeos/vike-metadata/pull/11) [`c38a1db`](https://github.com/Blankeos/vike-metadata/commit/c38a1db39789978531c7e38a62fc3745a1bdc9b1) Thanks [@Blankeos](https://github.com/Blankeos)! - feat: solidjs reactive params, similar to solid-query (special case for catchall routes)
+
+- [#11](https://github.com/Blankeos/vike-metadata/pull/11) [`d170890`](https://github.com/Blankeos/vike-metadata/commit/d17089024cb766432c6a29b15c7890f5ccdaa35b) Thanks [@Blankeos](https://github.com/Blankeos)! - fix: write to document.title on clientside. fixes #10
+
 ## 1.0.4
 
 ### Patch Changes
