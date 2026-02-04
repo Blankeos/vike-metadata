@@ -137,7 +137,9 @@ export function Page() {
 
   ```tsx
   useMetadata(() => ({
-    title: `Catchall ${slug()}`,
+    title: `Catchall ${slug()}`, // Title will now be reactive
     description: 'Catchall example page',
   }));
   ```
+
+- **How do I change the metadata on the clientside?** There's a way to do it now using [`bagon-hooks`](http://bagon-hooks.pages.dev) or `@mantine/hooks`, but also discussing if it should be just part of this library. [Read this issue](https://github.com/Blankeos/vike-metadata/issues/13).
